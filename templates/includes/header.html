@@ -1,0 +1,53 @@
+{% load static %}
+
+<header class="header">
+    <div class="header__container">
+
+        <a href="/" class="header__logo">
+            <img src="/static/images/logo_s.svg" alt="Олимпокс 2.0">
+            <span class="header__logo-version">
+                2.0
+            </span>
+        </a>
+
+        <div class="header__center">
+
+            <nav class="header__menu">
+                <a href="/" class="header__link active">
+                    Главная
+                </a>
+
+                <a href="#" class="header__link">
+                    Все вопросы
+                </a>
+            </nav>
+
+            <form class="header__search" action="#" method="get">
+                <input
+                    type="text"
+                    name="q"
+                    placeholder="Введите текст вопроса..."
+                    autocomplete="off"
+                >
+
+                <button type="submit" class="header__search-button">
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
+
+        </div>
+
+        <a href="#" class="header__profile">
+            {% if user.profile_image %}
+                <img
+                    src="{{ user.profile_image.url }}"
+                    alt="{{ user.username }}"
+                    class="header__profile-image"
+                >
+            {% else %}
+                <i class="bi-person-circle header__profile-icon"></i>
+            {% endif %}
+        </a>
+
+    </div>
+</header>
