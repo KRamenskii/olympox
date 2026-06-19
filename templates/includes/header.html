@@ -40,12 +40,8 @@
         <div class="header__profile-wrapper">
 
             <a href="#" class="header__profile" id="profileButton">
-                {% if user.profile_image %}
-                    <img
-                        src="{{ user.profile_image.url }}"
-                        alt="{{ user.username }}"
-                        class="header__profile-image"
-                    >
+                {% if user.photo %}
+                    <img src="{{ user.photo.url }}" alt="{{ user.full_name }}" class="header__profile-image">
                 {% else %}
                     <i class="bi bi-person-circle header__profile-icon"></i>
                 {% endif %}
@@ -54,11 +50,7 @@
             <div class="user-menu" id="userMenu">
 
                 <div class="user-menu__name">
-                    {{ user.last_name }}
-                    {{ user.first_name }}
-                    {% if user.middle_name %}
-                        {{ user.middle_name }}
-                    {% endif %}
+                    {{ user.full_name|default:user.username }}
                 </div>
 
                 <form method="post" action="{% url 'logout' %}">
