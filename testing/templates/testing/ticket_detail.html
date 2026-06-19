@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Билет №{{ ticket.number }}{% endblock %}
+
+{% block content %}
+<section class="ticket-page">
+
+    <section class="ticket-top">
+        <div class="ticket-top__left">
+            <a href="{{ request.META.HTTP_REFERER|default:'/' }}" class="ticket-back">
+                <i class="bi bi-arrow-left-circle-fill"></i>
+            </a>
+
+            <div>
+                <h1 class="ticket-title">Билет №{{ ticket.number }}</h1>
+                <p class="ticket-result">Правильно: {{ correct_questions }}/{{ total_questions }}</p>
+            </div>
+        </div>
+
+        <div class="ticket-top__right">
+            <div class="ticket-category-label">
+                {{ ticket.category.title }}
+            </div>
+
+            <div class="ticket-progress">
+                {% for item in ticket_questions %}
+                    <div class="ticket-progress__item {% if item.has_correct_answer %}is-correct{% else %}is-wrong{% endif %}">
+                        {{ item.order }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="ticket-question-list">
+        {% for item in ticket_questions %}
+            <article class="ticket-question-card">
+                <div class="ticket-question-card__number">
+                    {{ item.order }}
+                </div>
+
+                <div class="ticket-question-card__text">
+                    {{ item.question.text }}
+                </div>
+
+                <div class="ticket-question-card__answers">
+                    <div class="ticket-answer-box">
+                        {% for answer in item.question.answers.all %}
+                            <div class="ticket-answer {% if answer.is_correct %}is-correct{% else %}is-wrong{% endif %}">
+                                {{ answer.text|linebreaksbr }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </article>
+        {% empty %}
+            <div class="empty-message">Вопросы пока не добавлены</div>
+        {% endfor %}
+    </section>
+
+</section>
+{% endblock %}

@@ -26,7 +26,7 @@
         <div class="ticket-scroll">
             <div class="ticket-grid">
                 {% for ticket in tickets %}
-                    <a href="#" class="ticket-card">
+                    <a href="{% url 'testing:ticket_detail' ticket.id %}" class="ticket-card">
                         <span class="ticket-card__number">
                             {{ ticket.number }}
                         </span>
