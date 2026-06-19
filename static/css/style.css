@@ -218,7 +218,8 @@ body {
     top: 95px;
     right: 0;
 
-    width: 472px;
+    min-width: 472px;
+    width: max-content;
 
     padding: 15px;
 
@@ -254,6 +255,7 @@ body {
     font-weight: 700;
 
     text-align: center;
+    white-space: nowrap;
 }
 
 .user-menu__logout {
