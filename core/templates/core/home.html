@@ -6,4 +6,88 @@
 
 {% block content %}
 
+<section class="home-page">
+    <section class="home-section home-categories-section">
+        <h1 class="home-section__title">Предмет тестирования</h1>
+
+        <div class="category-scroll">
+            <div class="category-grid">
+                {% for category in categories %}
+                    <a href="?category={{ category.id }}" class="category-card {% if category.id == selected_category.id %}active{% endif %}">
+                        {{ category.title }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section class="home-section home-section--tickets">
+        <h2 class="home-section__title">Билеты</h2>
+
+        <div class="ticket-scroll">
+            <div class="ticket-grid">
+                {% for ticket in tickets %}
+                    <a href="#" class="ticket-card">
+                        <span class="ticket-card__number">
+                            {{ ticket.number }}
+                        </span>
+                        <span class="ticket-card__progress">
+                            {{ ticket.correct_question_count }}/{{ ticket.question_count }}
+                        </span>
+                    </a>
+                {% empty %}
+                    <div class="empty-message">
+                        Для выбранной категории билеты пока не добавлены
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function enableDragScroll(selector) {
+        const slider = document.querySelector(selector);
+
+        if (!slider) return;
+
+        let isDown = false;
+        let startX = 0;
+        let scrollLeft = 0;
+
+        slider.addEventListener('mousedown', function (event) {
+            isDown = true;
+            slider.classList.add('is-dragging');
+
+            startX = event.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+
+        slider.addEventListener('mouseleave', function () {
+            isDown = false;
+            slider.classList.remove('is-dragging');
+        });
+
+        slider.addEventListener('mouseup', function () {
+            isDown = false;
+            slider.classList.remove('is-dragging');
+        });
+
+        slider.addEventListener('mousemove', function (event) {
+            if (!isDown) return;
+
+            event.preventDefault();
+
+            const x = event.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 1.5;
+
+            slider.scrollLeft = scrollLeft - walk;
+        });
+    }
+
+    enableDragScroll('.category-grid');
+    enableDragScroll('.ticket-grid');
+</script>
 {% endblock %}
