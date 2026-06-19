@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+<section class="login-page">
+
+    <div class="login-card">
+
+        <img
+            src="/static/images/logo_s.svg"
+            alt="Olympox"
+            class="login-logo"
+        >
+
+        <h1 class="login-title">
+            Олимпокс 2.0
+        </h1>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="login-field">
+                {{ form.username }}
+            </div>
+
+            <div class="login-field">
+                {{ form.password }}
+            </div>
+
+            <button type="submit" class="login-button">
+                Войти
+            </button>
+        </form>
+
+    </div>
+
+</section>
+{% endblock %}

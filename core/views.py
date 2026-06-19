@@ -1,8 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Count, Q
 from testing.models import Category
 
 
+@login_required
 def home(request):
     categories = Category.objects.all()
 

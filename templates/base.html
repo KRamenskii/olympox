@@ -15,10 +15,13 @@
 
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link href="{% static 'testing/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'accounts/css/style.css' %}" rel="stylesheet">
 </head>
 <body>
 
-{% include 'includes/header.html' %}
+{% if show_header != False %}
+    {% include 'includes/header.html' %}
+{% endif %}
 
 <main>
     {% block content %}{% endblock %}

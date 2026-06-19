@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Q
 from django.shortcuts import get_object_or_404, render
 
 from .models import Ticket
 
 
+@login_required
 def ticket_detail(request, ticket_id):
     ticket = get_object_or_404(
         Ticket.objects.select_related('category'),
