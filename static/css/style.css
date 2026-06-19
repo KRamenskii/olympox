@@ -417,7 +417,6 @@ body {
     color: var(--color-accent-violet);
     font-size: 36px;
     font-weight: 700;
-    line-height: 1;
 }
 
 .ticket-card__progress {
@@ -429,7 +428,6 @@ body {
 
     font-size: 36px;
     font-weight: 700;
-    line-height: 1;
 }
 
 /* Empty */
