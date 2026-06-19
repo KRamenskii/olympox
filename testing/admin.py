@@ -5,6 +5,7 @@ from .models import Category, Ticket, Question, Answer, TicketQuestion
 class AnswerInline(admin.TabularInline):
     model = Answer
     extra = 1
+    fields = ['text', 'is_correct']
 
 
 class TicketQuestionInline(admin.TabularInline):
@@ -29,26 +30,16 @@ class TicketAdmin(admin.ModelAdmin):
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ['id', 'short_text']
+    list_display = ['id', 'text']
     search_fields = ['text']
     inlines = [AnswerInline]
-
-    def short_text(self, obj):
-        return obj.text[:100]
-
-    short_text.short_description = 'Вопрос'
 
 
 @admin.register(Answer)
 class AnswerAdmin(admin.ModelAdmin):
-    list_display = ['id', 'short_text', 'question', 'is_correct']
+    list_display = ['id', 'text', 'question', 'is_correct']
     list_filter = ['is_correct']
     search_fields = ['text', 'question__text']
-
-    def short_text(self, obj):
-        return obj.text[:100]
-
-    short_text.short_description = 'Ответ'
 
 
 @admin.register(TicketQuestion)

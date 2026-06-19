@@ -112,8 +112,6 @@
 .ticket-progress__item {
     flex: 1;
 
-    /* height: 19px; */
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -212,8 +210,6 @@
 }
 
 .ticket-answer {
-    min-height: 38px;
-
     display: flex;
     flex: 1;
     align-items: center;

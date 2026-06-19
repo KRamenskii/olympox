@@ -38,7 +38,7 @@ class Ticket(models.Model):
 
 
 class Question(models.Model):
-    text = models.TextField('Текст вопроса')
+    text = models.TextField('Текст вопроса', unique=True)
 
     class Meta:
         verbose_name = 'Вопрос'
@@ -63,6 +63,12 @@ class Answer(models.Model):
         verbose_name = 'Ответ'
         verbose_name_plural = 'Ответы'
         ordering = ['id']
+        constraints = [
+            models.UniqueConstraint(
+                fields=['question', 'text'],
+                name='unique_answer_text_in_question'
+            )
+        ]
 
     def __str__(self):
         return self.text[:80]
