@@ -3,7 +3,7 @@
 <header class="header">
     <div class="header__container">
 
-        <a href="/" class="header__logo">
+        <a href="{% url 'home' %}" class="header__logo">
             <img src="/static/images/logo_s.svg" alt="Олимпокс 2.0">
             <span class="header__logo-version">
                 2.0
@@ -37,17 +37,62 @@
 
         </div>
 
-        <a href="#" class="header__profile">
-            {% if user.profile_image %}
-                <img
-                    src="{{ user.profile_image.url }}"
-                    alt="{{ user.username }}"
-                    class="header__profile-image"
-                >
-            {% else %}
-                <i class="bi-person-circle header__profile-icon"></i>
-            {% endif %}
-        </a>
+        <div class="header__profile-wrapper">
+
+            <a href="#" class="header__profile" id="profileButton">
+                {% if user.profile_image %}
+                    <img
+                        src="{{ user.profile_image.url }}"
+                        alt="{{ user.username }}"
+                        class="header__profile-image"
+                    >
+                {% else %}
+                    <i class="bi bi-person-circle header__profile-icon"></i>
+                {% endif %}
+            </a>
+
+            <div class="user-menu" id="userMenu">
+
+                <div class="user-menu__name">
+                    {{ user.last_name }}
+                    {{ user.first_name }}
+                    {% if user.middle_name %}
+                        {{ user.middle_name }}
+                    {% endif %}
+                </div>
+
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="user-menu__logout">
+                        Выйти
+                    </button>
+                </form>
+
+            </div>
+
+        </div>
 
     </div>
 </header>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const button = document.getElementById('profileButton');
+    const menu = document.getElementById('userMenu');
+
+    if (!button || !menu) return;
+
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        menu.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target) && !button.contains(e.target)) {
+            menu.classList.remove('active');
+        }
+    });
+
+});
+</script>

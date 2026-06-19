@@ -208,12 +208,71 @@ body {
     color: white;
 }
 
+.header__profile-wrapper {
+    position: relative;
+}
 
+.user-menu {
+    position: absolute;
 
+    top: 95px;
+    right: 0;
 
+    width: 472px;
+
+    padding: 15px;
+
+    background: var(--color-accent-violet);
+
+    border-radius: 35px;
+
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+
+    z-index: 1000;
+}
+
+.user-menu.active {
+    display: flex;
+}
+
+.user-menu__name {
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 20px;
+
+    border-radius: 25px;
+
+    background: var(--color-accent-yellow);
+
+    font-size: 24px;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+.user-menu__logout {
+    width: 100%;
+    height: 50px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background: #F68E8E;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
 
 /* Home page */
-
 .home-page {
     max-width: var(--container-width);
     margin: 0 auto;
@@ -236,7 +295,6 @@ body {
 }
 
 /* Categories */
-
 .category-scroll {
     width: 100vw;
     margin-left: calc(50% - 50vw);
@@ -297,7 +355,6 @@ body {
 }
 
 /* Tickets */
-
 .ticket-scroll {
     width: 100vw;
     margin-left: calc(50% - 50vw);
@@ -376,7 +433,6 @@ body {
 }
 
 /* Empty */
-
 .empty-message {
     color: #000000;
     font-size: 24px;
