@@ -80,3 +80,52 @@
 .login-button:hover {
     transform: translateY(-2px);
 }
+
+/* Phone adaptive layout */
+@media (max-width: 767px) {
+    .login-page {
+        min-height: 100vh;
+        padding: 24px 16px;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .login-card .logo,
+    .login-logo {
+        width: 160px;
+        height: 160px;
+        object-fit: contain;
+        margin-bottom: 12px;
+    }
+
+    .login-title {
+        margin-bottom: 24px;
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .login-card form,
+    .login-field,
+    .login-field input,
+    .login-button {
+        width: 100%;
+    }
+
+    .login-field {
+        margin-bottom: 16px;
+    }
+
+    .login-field input,
+    .login-button {
+        height: 48px;
+        border-radius: 24px;
+        font-size: 18px;
+    }
+
+    .login-field input {
+        padding: 0 18px;
+    }
+}

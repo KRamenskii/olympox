@@ -450,3 +450,192 @@ body {
 .ticket-grid.is-dragging {
     cursor: grabbing;
 }
+
+/* Phone adaptive layout */
+@media (max-width: 767px) {
+    :root { --container-width: 100%; }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body { background-attachment: scroll; }
+
+    .header { padding: 10px 12px 0; }
+
+    .header__container {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin: 0;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .header__logo {
+        width: 82px;
+        height: 52px;
+        padding: 7px 10px;
+        border-radius: 26px;
+    }
+
+    .header__logo img { height: 36px; }
+
+    .header__logo-version { font-size: 20px; }
+
+    .header__center {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        border-radius: 26px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .header__menu {
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .header__link {
+        width: 100%;
+        height: 42px;
+        border-radius: 21px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .header__search {
+        width: 100%;
+        height: 44px;
+        filter: none;
+    }
+
+    .header__search input {
+        height: 44px;
+        padding: 0 54px 0 16px;
+        border-radius: 22px;
+        font-size: 14px;
+    }
+
+    .header__search-button {
+        width: 44px;
+        height: 44px;
+        margin-left: -44px;
+        font-size: 22px;
+        box-shadow: none;
+    }
+
+    .header__profile {
+        width: 52px;
+        height: 52px;
+    }
+
+    .header__profile-image,
+    .header__profile-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 44px;
+    }
+
+    .user-menu {
+        top: 62px;
+        right: 0;
+        min-width: min(320px, calc(100vw - 24px));
+        max-width: calc(100vw - 24px);
+        padding: 10px;
+        border-radius: 24px;
+        gap: 10px;
+    }
+
+    .user-menu__name,
+    .user-menu__logout {
+        height: 44px;
+        border-radius: 22px;
+        font-size: 16px;
+    }
+
+    .home-page {
+        width: 100%;
+        max-width: 100%;
+        padding: 24px 12px 32px;
+    }
+
+    .home-section + .home-section {
+        margin-top: 30px;
+    }
+
+    .home-section__title {
+        margin-bottom: 16px;
+        font-size: 24px;
+        line-height: 1.18;
+    }
+
+    .category-scroll,
+    .ticket-scroll {
+        width: calc(100vw - 24px);
+        margin-left: 0;
+        overflow: visible;
+    }
+
+    .category-grid {
+        display: flex;
+        gap: 12px;
+        padding: 0 0 10px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+    }
+
+    .category-card {
+        flex-basis: 78vw;
+        min-height: 96px;
+        padding: 18px;
+        border-radius: 28px;
+        font-size: 18px;
+        scroll-snap-align: start;
+    }
+
+    .ticket-grid {
+        height: auto;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        overflow: visible;
+        padding: 0;
+    }
+
+    .ticket-card {
+        width: 100%;
+        height: 64px;
+        flex: none;
+        border-radius: 32px;
+    }
+
+    .ticket-card__number {
+        width: 64px;
+        height: 64px;
+        border-width: 4px;
+        font-size: 28px;
+    }
+
+    .ticket-card__progress {
+        font-size: 28px;
+    }
+
+    .empty-message {
+        font-size: 16px;
+        line-height: 1.35;
+    }
+}
