@@ -1,4 +1,5 @@
 from django.contrib.auth.views import LoginView, LogoutView
+from django.urls import reverse_lazy
 
 from .forms import UserLoginForm
 
@@ -12,4 +13,4 @@ class UserLoginView(LoginView):
 
 
 class UserLogoutView(LogoutView):
-    next_page = 'login'
+    next_page = reverse_lazy('login')

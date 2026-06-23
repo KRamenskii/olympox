@@ -4,7 +4,7 @@ from django.db.models import Count, Q
 from testing.models import Category
 
 
-@login_required
+@login_required(login_url='/login/')
 def home(request):
     categories = Category.objects.all()
 
